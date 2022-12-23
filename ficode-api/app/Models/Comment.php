@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'id_post');
+    }
+    public function replyCommets()
+    {
+        return $this->hasMany(ReplyComment::class);
+    }
 }
