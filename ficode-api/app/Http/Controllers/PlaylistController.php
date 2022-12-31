@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ImageRequest;
-use App\Http\Requests\StoreImageRequest;
-use App\Http\Resources\ImageResource;
-use App\Models\Image;
+use App\Http\Requests\PlaylistRequest;
+use App\Http\Resources\PlaylistResource;
+use App\Models\Playlist;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-use function PHPUnit\Framework\returnSelf;
-
-class ImageController extends Controller
+class PlaylistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +17,11 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $get = ImageResource::collection(Image::where('hidden', false)->get());
-
+        $get = PlaylistResource::collection(Playlist::all());
         return response()->json([
             'status' => 200,
             'data' => count($get) > 0 ? $get : 'data kosong'
-        ],200);
+        ], 200);
     }
 
     /**
@@ -43,24 +40,22 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ImageRequest $request)
+    public function store(PlaylistRequest $request)
     {
         $validated = $request->validated();
-        $validated['url'] = $request->file('url')->store('image_post');
+        $validated['image'] =  $request->file('image')->store('image_post');
 
-        $store = Image::create($validated);
+        $store = Playlist::create($validated);
 
-        
         return $store ? response()->json([
             'status' => 200,
-            'message' => 'berhasil tambah data',
-            'data' => $store
-        ],200) : response()->json([
+            'message' => 'berhasil upload',
+            'data' => $store,
+        ], 200) : response()->json([
             'status' => 400,
-            'message' => 'gagal tambah data',
-            'data' => null
-        ],400);
-
+            'message' => 'gagal upload',
+            'data' => null,
+        ], 400);
     }
 
     /**
@@ -69,11 +64,11 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show(Playlist $playlist)
     {
         return response()->json([
             'status' => 200,
-            'data' => new ImageResource($image)
+            'data' => new PlaylistResource($playlist)
         ], 200);
     }
 
@@ -95,16 +90,18 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ImageRequest $request, Image $image)
+    public function update(PlaylistRequest $request, Playlist $playlist)
     {
-        $update = $image->update($request->validated());
-        return $update ? response()->json([
+        $validated = $request->validated();
+        if ($request->get('image')) {
+            $validated['image'] =  $request->file('image')->store('image_post');
+        }
+        $update = $playlist->update($validated);
+
+        return response()->json([
             'status' => 200,
-            'message' => 'berhasil diubah'
-        ], 200) : response()->json([
-            'status' => 400,
-            'message' => 'gagal diubah'
-        ], 400);
+            'message' => 'berhasil update'
+        ], 200);
     }
 
     /**
@@ -115,7 +112,7 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        return Image::destroy($id) ? response()->json([
+        return Playlist::destroy($id) ? response()->json([
             'status' => 200,
             'message' => 'berhasil dihapus'
         ], 200) : response()->json([
