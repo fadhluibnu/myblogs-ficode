@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlaylistResource extends JsonResource
+class PlaylistDataResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,9 @@ class PlaylistResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'image' => $this->image,
-            'slug' => $this->slug,
-            'desc' => $this->desc,
-            'views' => $this->views,
-            'playlist_data' => PlaylistDataResource::collection(collect($this->playlistDatas)->sortBy('playlist_order')->values()->all())
+            'id_playlist' => $this->id_playlist,
+            'id_post' => $this->id_post,
+            'playlist_order' => $this->playlist_order
         ];
     }
 }

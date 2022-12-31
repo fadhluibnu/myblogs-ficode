@@ -17,7 +17,7 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $get = PlaylistResource::collection(Playlist::all());
+        $get = PlaylistResource::collection(Playlist::all()->load('playlistDatas'));
         return response()->json([
             'status' => 200,
             'data' => count($get) > 0 ? $get : 'data kosong'
@@ -98,10 +98,13 @@ class PlaylistController extends Controller
         }
         $update = $playlist->update($validated);
 
-        return response()->json([
+        return $update ? response()->json([
             'status' => 200,
             'message' => 'berhasil update'
-        ], 200);
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal update'
+        ], 400);
     }
 
     /**

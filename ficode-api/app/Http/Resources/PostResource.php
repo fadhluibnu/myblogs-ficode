@@ -27,7 +27,7 @@ class PostResource extends JsonResource
             'meta_desc' => $this->meta_desc,
             'slug' => $this->slug,
             'tag' => $this->tag,
-            'playlist' => $this->playlist,
+            'playlist' => new PlaylistResource($this->playlist),
             'category' => $this->category,
             'image_cover' => $this->image_cover,
             'body' => $this->body,
