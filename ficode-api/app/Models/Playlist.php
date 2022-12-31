@@ -16,6 +16,6 @@ class Playlist extends Model
     }
     public function playlistDatas()
     {
-        return $this->hasMany(PlaylistData::class);
+        return $this->hasMany(PlaylistData::class, 'id_playlist');
     }
 }

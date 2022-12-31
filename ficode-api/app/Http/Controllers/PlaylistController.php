@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
-use App\Http\Resources\PostResource;
+use App\Http\Requests\PlaylistRequest;
+use App\Http\Resources\PlaylistResource;
+use App\Models\Playlist;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PlaylistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $get = PostResource::collection(Post::all()->load('user', 'playlist', 'category'));
-
+        $get = PlaylistResource::collection(Playlist::all()->load('playlistDatas'));
         return response()->json([
             'status' => 200,
             'data' => count($get) > 0 ? $get : 'data kosong'
@@ -40,20 +40,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PlaylistRequest $request)
     {
-        $validated =  $request->validated();
-        $validated['image_cover'] = $request->file('image_cover')->store('image_post');
+        $validated = $request->validated();
+        $validated['image'] =  $request->file('image')->store('image_post');
 
-        $store = Post::create($validated);
+        $store = Playlist::create($validated);
+
         return $store ? response()->json([
             'status' => 200,
-            'message' => 'berhasil tambah data',
-            'data' => $store
+            'message' => 'berhasil upload',
+            'data' => $store,
         ], 200) : response()->json([
             'status' => 400,
-            'message' => 'gagal tambah data',
-            'data' => null
+            'message' => 'gagal upload',
+            'data' => null,
         ], 400);
     }
 
@@ -63,11 +64,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Playlist $playlist)
     {
         return response()->json([
             'status' => 200,
-            'data' => new PostResource($post->load('user', 'playlist', 'category'))
+            'data' => new PlaylistResource($playlist)
         ], 200);
     }
 
@@ -89,20 +90,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PlaylistRequest $request, Playlist $playlist)
     {
         $validated = $request->validated();
-        if ($request->get('image_cover')) {
-            $validated['image_cover'] = $request->file('image_cover')->store('image_post');
+        if ($request->get('image')) {
+            $validated['image'] =  $request->file('image')->store('image_post');
         }
-        $update = $post->update($validated);
+        $update = $playlist->update($validated);
 
         return $update ? response()->json([
             'status' => 200,
-            'message' => 'berhasil diupdate'
+            'message' => 'berhasil update'
         ], 200) : response()->json([
             'status' => 400,
-            'message' => 'gagal diupdate'
+            'message' => 'gagal update'
         ], 400);
     }
 
@@ -114,7 +115,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        return Post::destroy($id) ? response()->json([
+        return Playlist::destroy($id) ? response()->json([
             'status' => 200,
             'message' => 'berhasil dihapus'
         ], 200) : response()->json([

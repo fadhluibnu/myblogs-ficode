@@ -23,7 +23,7 @@ class ImageController extends Controller
 
         return response()->json([
             'status' => 200,
-            'data' => $get ? $get : 'data kosong'
+            'data' => count($get) > 0 ? $get : 'data kosong'
         ],200);
     }
 
