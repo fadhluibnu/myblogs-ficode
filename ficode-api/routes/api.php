@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [UserController::class, 'login']);
 
+Route::get('/post', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'show']);
+
 Route::middleware('auth:sanctum')->group(function(){
+    Route::put('/post/{post}', [PostController::class, 'update']);
+    Route::resource('/post', PostController::class)->except('show', 'index', 'update');
     Route::resource('/image', ImageController::class);
     Route::post('/logout', [UserController::class, 'logout']);
 });

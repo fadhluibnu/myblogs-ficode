@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignId('id_category')->nullable();
             $table->string('image_cover');
             $table->text('body');
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

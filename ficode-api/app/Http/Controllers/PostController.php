@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostResource;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +16,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $get = PostResource::collection(Post::all()->load('user', 'playlist', 'category'));
+
+        return response()->json([
+            'status' => 200,
+            'data' => count($get) > 0 ? $get : 'data kosong'
+        ], 200);
     }
 
     /**
@@ -32,9 +40,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $validated =  $request->validated();
+        $validated['image_cover'] = $request->file('image_cover')->store('image_post');
+
+        $store = Post::create($validated);
+        return $store ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil tambah data',
+            'data' => $store
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal tambah data',
+            'data' => null
+        ], 400);
     }
 
     /**
@@ -43,9 +63,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return response()->json([
+            'status' => 200,
+            'data' => new PostResource($post->load('user', 'playlist', 'category'))
+        ], 200);
     }
 
     /**
@@ -66,9 +89,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+        if ($validated['image_cover']) {
+            $validated['image_cover'] = $request->file('image_cover')->store('image_post');
+        }
+        $update = $post->update($validated);
+
+        return $update ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil diupdate'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal diupdate'
+        ], 400);
     }
 
     /**
@@ -79,6 +114,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Post::destroy($id) ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil dihapus'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal dihapus'
+        ], 400);
     }
 }
