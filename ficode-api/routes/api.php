@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\PlaylistDataController;
@@ -34,6 +35,9 @@ Route::get('/playlist/{playlist:slug}', [PlaylistController::class, 'show']);
 
 Route::get('/playlist_data', [PlaylistDataController::class, 'index']);
 Route::get('/playlist_data/{playlist_datum}', [PlaylistDataController::class, 'show']);
+
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
  
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/post', PostController::class)->except('show', 'index');
@@ -42,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('/playlist', PlaylistController::class)->except('show', 'index');
     Route::resource('/playlist_data', PlaylistDataController::class)->except('show', 'index');
+
+    Route::resource('/category', CategoryController::class)->except('show', 'index');
 
     Route::post('/logout', [UserController::class, 'logout']);
 });

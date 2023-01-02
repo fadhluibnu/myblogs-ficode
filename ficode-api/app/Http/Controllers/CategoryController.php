@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $get = CategoryResource::collection(Category::all()->load('posts'));
+        return response()->json([
+            'status' => 200,
+            'data' => count($get) > 0 ? $get : 'data kosong'
+        ],200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CategoryRequest $request)
+    {
+        $validated = $request->validated();
+        $validated['image'] = $request->file('image')->store('image_post');
+
+        $store = Category::create($validated);
+
+        return $store ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil tambah data',
+            'data' => $store
+        ],200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal tambah data',
+            'data' => null
+        ],400);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
+    {
+        return response()->json([
+            'status' => 200,
+            'data' => new CategoryResource($category->load('posts'))
+        ], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CategoryRequest $request, Category $category)
+    {
+        
+        $validated = $request->validated();
+        if ($request->get('image')) {
+            $validated['image'] =  $request->file('image')->store('image_post');
+        }
+        $update = $category->update($validated);
+
+        return $update ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil diubah'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal diubah'
+        ], 400);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return Category::destroy($id) ? response()->json([
+            'status' => 200,
+            'message' => 'berhasil dihapus'
+        ], 200) : response()->json([
+            'status' => 400,
+            'message' => 'gagal dihapus'
+        ], 400);
+    }
+}
