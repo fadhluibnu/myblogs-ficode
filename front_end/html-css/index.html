@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white">
+      <div class="container" id="real-navbar">
+        <svg
+          class="hamburger-menu"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          onclick="navbar()"
+        >
+          <path
+            d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z"
+            fill="currentColor"
+          />
+          <path
+            d="M2 12.0322C2 11.4799 2.44772 11.0322 3 11.0322H21C21.5523 11.0322 22 11.4799 22 12.0322C22 12.5845 21.5523 13.0322 21 13.0322H3C2.44772 13.0322 2 12.5845 2 12.0322Z"
+            fill="currentColor"
+          />
+          <path
+            d="M3 17.0645C2.44772 17.0645 2 17.5122 2 18.0645C2 18.6167 2.44772 19.0645 3 19.0645H21C21.5523 19.0645 22 18.6167 22 18.0645C22 17.5122 21.5523 17.0645 21 17.0645H3Z"
+            fill="currentColor"
+          />
+        </svg>
+        <a class="navbar-brand me-sm-auto m-lg-auto ms-sm-3 ms-lg-0" href="#">
+          <img src="assets/logo.png" alt="Bootstrap" width="34" />
+        </a>
+        <div
+          class="navbar-collapse d-none d-lg-inline-block"
+          id="navbarNavDropdown"
+        >
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page">Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page">Kategori</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#" aria-current="page">Playlist</a>
+            </li>
+            <div class="close d-lg-none d-inline-block">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-x-circle mt-5"
+                viewBox="0 0 16 16"
+                onclick="closeNavbar()"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                />
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </div>
+          </ul>
+        </div>
+        <form class="d-flex" role="search">
+          <div class="input-group">
+            <span
+              class="input-group-text icon-search-mobile"
+              id="basic-addon1"
+              onclick="realNav()"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.7429 10.3421C12.7112 9.02083 13.1449 7.38264 12.9572 5.7553C12.7695 4.12796 11.9743 2.63149 10.7307 1.56528C9.48701 0.499068 7.88665 -0.0582491 6.24973 0.00482408C4.61282 0.0678972 3.06008 0.746709 1.90217 1.90545C0.744249 3.0642 0.0665484 4.61742 0.00464653 6.25438C-0.0572553 7.89134 0.501207 9.49131 1.56831 10.7342C2.6354 11.9771 4.13244 12.7712 5.75992 12.9577C7.38739 13.1442 9.02528 12.7094 10.3459 11.7401H10.3449C10.3749 11.7801 10.4069 11.8181 10.4429 11.8551L14.2929 15.7051C14.4804 15.8928 14.7348 15.9983 15 15.9983C15.2653 15.9984 15.5198 15.8932 15.7074 15.7056C15.895 15.5181 16.0005 15.2638 16.0006 14.9985C16.0007 14.7332 15.8954 14.4788 15.7079 14.2911L11.8579 10.4411C11.8221 10.405 11.7837 10.3715 11.7429 10.3411V10.3421ZM12.0009 6.49815C12.0009 7.22042 11.8586 7.93562 11.5822 8.60291C11.3058 9.2702 10.9007 9.87651 10.39 10.3872C9.87926 10.898 9.27295 11.3031 8.60566 11.5795C7.93837 11.8559 7.22317 11.9981 6.5009 11.9981C5.77863 11.9981 5.06343 11.8559 4.39614 11.5795C3.72885 11.3031 3.12253 10.898 2.61181 10.3872C2.10109 9.87651 1.69596 9.2702 1.41956 8.60291C1.14316 7.93562 1.0009 7.22042 1.0009 6.49815C1.0009 5.03946 1.58036 3.64051 2.61181 2.60906C3.64326 1.57761 5.04221 0.998147 6.5009 0.998147C7.95959 0.998147 9.35853 1.57761 10.39 2.60906C11.4214 3.64051 12.0009 5.03946 12.0009 6.49815Z"
+                  fill="#767676"
+                />
+              </svg>
+            </span>
+            <input
+              type="text"
+              class="form-control up-mobile"
+              placeholder="Cari Postingan"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              onclick="realNav()"
+            />
+          </div>
+        </form>
+      </div>
+      <div
+        class="container position-relative d-none"
+        id="seccond-navbar"
+        style="right: -100px; opacity: 0; padding: 3px 12px"
+      >
+        <form class="d-flex m-auto w-100 form-search-secc" role="search">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.7429 10.3421C12.7112 9.02083 13.1449 7.38264 12.9572 5.7553C12.7695 4.12796 11.9743 2.63149 10.7307 1.56528C9.48701 0.499068 7.88665 -0.0582491 6.24973 0.00482408C4.61282 0.0678972 3.06008 0.746709 1.90217 1.90545C0.744249 3.0642 0.0665484 4.61742 0.00464653 6.25438C-0.0572553 7.89134 0.501207 9.49131 1.56831 10.7342C2.6354 11.9771 4.13244 12.7712 5.75992 12.9577C7.38739 13.1442 9.02528 12.7094 10.3459 11.7401H10.3449C10.3749 11.7801 10.4069 11.8181 10.4429 11.8551L14.2929 15.7051C14.4804 15.8928 14.7348 15.9983 15 15.9983C15.2653 15.9984 15.5198 15.8932 15.7074 15.7056C15.895 15.5181 16.0005 15.2638 16.0006 14.9985C16.0007 14.7332 15.8954 14.4788 15.7079 14.2911L11.8579 10.4411C11.8221 10.405 11.7837 10.3715 11.7429 10.3411V10.3421ZM12.0009 6.49815C12.0009 7.22042 11.8586 7.93562 11.5822 8.60291C11.3058 9.2702 10.9007 9.87651 10.39 10.3872C9.87926 10.898 9.27295 11.3031 8.60566 11.5795C7.93837 11.8559 7.22317 11.9981 6.5009 11.9981C5.77863 11.9981 5.06343 11.8559 4.39614 11.5795C3.72885 11.3031 3.12253 10.898 2.61181 10.3872C2.10109 9.87651 1.69596 9.2702 1.41956 8.60291C1.14316 7.93562 1.0009 7.22042 1.0009 6.49815C1.0009 5.03946 1.58036 3.64051 2.61181 2.60906C3.64326 1.57761 5.04221 0.998147 6.5009 0.998147C7.95959 0.998147 9.35853 1.57761 10.39 2.60906C11.4214 3.64051 12.0009 5.03946 12.0009 6.49815Z"
+                  fill="#767676"
+                />
+              </svg>
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Cari Postingan"
+              aria-describedby="basic-addon1"
+              autofocus
+            />
+            <span class="input-group-text" onclick="seccondNav()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-x"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </span>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <header>
+      <div class="container">
+        <div class="row align-items-center">
+          <div
+            class="col-lg-6 text-center text-lg-start mt-4 mt-lg-0 mb-5 mb-sm-0"
+          >
+            <h1>Belajar Pemrograman Bersama</h1>
+            <p>
+              Temukan seluruh pembahasan mulai dari dasar hingga mahir. Pilih
+              roadmap yang anda sukai
+            </p>
+            <a
+              class="btn btn-primary d-block d-sm-inline"
+              href="#"
+              role="button"
+              >Semua Postingan</a
+            >
+          </div>
+          <div class="col-lg-6">
+            <div class="image mt-5 d-none d-sm-block"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mt-5">
+      <section class="section-postingan">
+        <article class="container">
+          <h1>Postingan Terbaru</h1>
+          <div class="row mt-3 gy-4">
+            <div class="col-sm-6 col-lg-4">
+              <a class="card border-0 text-decoration-none" href="#">
+                <img
+                  src="assets/image.png"
+                  class="card-img-top rounded-4"
+                  alt="..."
+                />
+                <div class="card-body px-2">
+                  <div class="info d-flex justify-content-between mb-2">
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-calendar-week"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                        />
+                        <path
+                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                        />
+                      </svg>
+                      22/01/2022</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-bookmark-heart"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"
+                        />
+                        <path
+                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                        />
+                      </svg>
+                      Programming</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-eye"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                        />
+                        <path
+                          d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                        />
+                      </svg>
+                      900 Views</span
+                    >
+                  </div>
+                  <h5 class="card-title">
+                    Lorem non dapibus. Phasellus orci Iaculis venenatis orci
+                  </h5>
+                  <p class="card-text">
+                    Pellentesque sem elit, hendrerit ut sit ameteuismod laoreet
+                    ac justo. Curabitur et diam neque. Hendrerit...
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <a class="card border-0 text-decoration-none" href="#">
+                <img
+                  src="assets/image.png"
+                  class="card-img-top rounded-4"
+                  alt="..."
+                />
+                <div class="card-body px-2">
+                  <div class="info d-flex justify-content-between mb-2">
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-calendar-week"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                        />
+                        <path
+                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                        />
+                      </svg>
+                      22/01/2022</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-bookmark-heart"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"
+                        />
+                        <path
+                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                        />
+                      </svg>
+                      Programming</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-eye"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                        />
+                        <path
+                          d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                        />
+                      </svg>
+                      900 Views</span
+                    >
+                  </div>
+                  <h5 class="card-title">
+                    Lorem non dapibus. Phasellus orci Iaculis venenatis orci
+                  </h5>
+                  <p class="card-text">
+                    Pellentesque sem elit, hendrerit ut sit ameteuismod laoreet
+                    ac justo. Curabitur et diam neque. Hendrerit...
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <a class="card border-0 text-decoration-none" href="#">
+                <img
+                  src="assets/image.png"
+                  class="card-img-top rounded-4"
+                  alt="..."
+                />
+                <div class="card-body px-2">
+                  <div class="info d-flex justify-content-between mb-2">
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-calendar-week"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                        />
+                        <path
+                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                        />
+                      </svg>
+                      22/01/2022</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-bookmark-heart"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"
+                        />
+                        <path
+                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                        />
+                      </svg>
+                      Programming</span
+                    >
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-eye"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                        />
+                        <path
+                          d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                        />
+                      </svg>
+                      900 Views</span
+                    >
+                  </div>
+                  <h5 class="card-title">
+                    Lorem non dapibus. Phasellus orci Iaculis venenatis orci
+                  </h5>
+                  <p class="card-text">
+                    Pellentesque sem elit, hendrerit ut sit ameteuismod laoreet
+                    ac justo. Curabitur et diam neque. Hendrerit...
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section
+        class="section-postingan mt-4"
+        style="background-color: rgba(44, 87, 244, 0.08)"
+      >
+        <article class="container pt-4">
+          <h1>Playlist Terpopuler</h1>
+          <div class="row mt-3 gy-4">
+            <div class="col-sm-6 col-lg-4">
+              <div class="card border-0 text-decoration-none rounded-4" style="overflow: hidden;" href="#">
+                <img src="assets/image.png" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <div class="info d-flex mb-2">
+                    <span class="me-3">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.5625 3.28125C6.5625 3.4553 6.49336 3.62222 6.37029 3.74529C6.24722 3.86836 6.0803 3.9375 5.90625 3.9375C5.7322 3.9375 5.56528 3.86836 5.44221 3.74529C5.31914 3.62222 5.25 3.4553 5.25 3.28125C5.25 3.1072 5.31914 2.94028 5.44221 2.81721C5.56528 2.69414 5.7322 2.625 5.90625 2.625C6.0803 2.625 6.24722 2.69414 6.37029 2.81721C6.49336 2.94028 6.5625 3.1072 6.5625 3.28125V3.28125ZM5.80912 4.6305L6.97287 5.40575L8.59512 3.78262C8.6276 3.75006 8.66952 3.72855 8.71491 3.72117C8.76031 3.71379 8.80688 3.7209 8.848 3.7415L9.625 4.15625V6.125C9.625 6.24103 9.57891 6.35231 9.49686 6.43436C9.41481 6.51641 9.30353 6.5625 9.1875 6.5625H4.8125C4.69647 6.5625 4.58519 6.51641 4.50314 6.43436C4.42109 6.35231 4.375 6.24103 4.375 6.125V5.6875C4.375 5.6875 5.7225 4.57275 5.80912 4.6305ZM4.375 8.3125C4.375 8.19647 4.42109 8.08519 4.50314 8.00314C4.58519 7.92109 4.69647 7.875 4.8125 7.875H9.1875C9.30353 7.875 9.41481 7.92109 9.49686 8.00314C9.57891 8.08519 9.625 8.19647 9.625 8.3125C9.625 8.42853 9.57891 8.53981 9.49686 8.62186C9.41481 8.70391 9.30353 8.75 9.1875 8.75H4.8125C4.69647 8.75 4.58519 8.70391 4.50314 8.62186C4.42109 8.53981 4.375 8.42853 4.375 8.3125ZM4.375 10.0625C4.375 9.94647 4.42109 9.83519 4.50314 9.75314C4.58519 9.67109 4.69647 9.625 4.8125 9.625H6.5625C6.67853 9.625 6.78981 9.67109 6.87186 9.75314C6.95391 9.83519 7 9.94647 7 10.0625C7 10.1785 6.95391 10.2898 6.87186 10.3719C6.78981 10.4539 6.67853 10.5 6.5625 10.5H4.8125C4.69647 10.5 4.58519 10.4539 4.50314 10.3719C4.42109 10.2898 4.375 10.1785 4.375 10.0625Z" fill="#3E414C"/>
+                      <path d="M2.625 0H11.375C11.8391 0 12.2842 0.184375 12.6124 0.512563C12.9406 0.840752 13.125 1.28587 13.125 1.75V12.25C13.125 12.7141 12.9406 13.1592 12.6124 13.4874C12.2842 13.8156 11.8391 14 11.375 14H2.625C2.16087 14 1.71575 13.8156 1.38756 13.4874C1.05937 13.1592 0.875 12.7141 0.875 12.25V11.375H1.75V12.25C1.75 12.4821 1.84219 12.7046 2.00628 12.8687C2.17038 13.0328 2.39294 13.125 2.625 13.125H11.375C11.6071 13.125 11.8296 13.0328 11.9937 12.8687C12.1578 12.7046 12.25 12.4821 12.25 12.25V1.75C12.25 1.51794 12.1578 1.29538 11.9937 1.13128C11.8296 0.967187 11.6071 0.875 11.375 0.875H2.625C2.39294 0.875 2.17038 0.967187 2.00628 1.13128C1.84219 1.29538 1.75 1.51794 1.75 1.75V2.625H0.875V1.75C0.875 1.28587 1.05937 0.840752 1.38756 0.512563C1.71575 0.184375 2.16087 0 2.625 0V0Z" fill="#3E414C"/>
+                      <path d="M0.875 4.375V3.9375C0.875 3.82147 0.921094 3.71019 1.00314 3.62814C1.08519 3.54609 1.19647 3.5 1.3125 3.5C1.42853 3.5 1.53981 3.54609 1.62186 3.62814C1.70391 3.71019 1.75 3.82147 1.75 3.9375V4.375H2.1875C2.30353 4.375 2.41481 4.42109 2.49686 4.50314C2.57891 4.58519 2.625 4.69647 2.625 4.8125C2.625 4.92853 2.57891 5.03981 2.49686 5.12186C2.41481 5.20391 2.30353 5.25 2.1875 5.25H0.4375C0.321468 5.25 0.210188 5.20391 0.128141 5.12186C0.0460936 5.03981 0 4.92853 0 4.8125C0 4.69647 0.0460936 4.58519 0.128141 4.50314C0.210188 4.42109 0.321468 4.375 0.4375 4.375H0.875ZM0.875 7V6.5625C0.875 6.44647 0.921094 6.33519 1.00314 6.25314C1.08519 6.17109 1.19647 6.125 1.3125 6.125C1.42853 6.125 1.53981 6.17109 1.62186 6.25314C1.70391 6.33519 1.75 6.44647 1.75 6.5625V7H2.1875C2.30353 7 2.41481 7.04609 2.49686 7.12814C2.57891 7.21019 2.625 7.32147 2.625 7.4375C2.625 7.55353 2.57891 7.66481 2.49686 7.74686C2.41481 7.82891 2.30353 7.875 2.1875 7.875H0.4375C0.321468 7.875 0.210188 7.82891 0.128141 7.74686C0.0460936 7.66481 0 7.55353 0 7.4375C0 7.32147 0.0460936 7.21019 0.128141 7.12814C0.210188 7.04609 0.321468 7 0.4375 7H0.875ZM0.875 9.625V9.1875C0.875 9.07147 0.921094 8.96019 1.00314 8.87814C1.08519 8.79609 1.19647 8.75 1.3125 8.75C1.42853 8.75 1.53981 8.79609 1.62186 8.87814C1.70391 8.96019 1.75 9.07147 1.75 9.1875V9.625H2.1875C2.30353 9.625 2.41481 9.67109 2.49686 9.75314C2.57891 9.83519 2.625 9.94647 2.625 10.0625C2.625 10.1785 2.57891 10.2898 2.49686 10.3719C2.41481 10.4539 2.30353 10.5 2.1875 10.5H0.4375C0.321468 10.5 0.210188 10.4539 0.128141 10.3719C0.0460936 10.2898 0 10.1785 0 10.0625C0 9.94647 0.0460936 9.83519 0.128141 9.75314C0.210188 9.67109 0.321468 9.625 0.4375 9.625H0.875Z" fill="#3E414C"/>
+                      </svg> 22/01/2022</span>
+                    <span><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-eye"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                        />
+                        <path
+                          d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                        />
+                      </svg>
+                      900 Views
+                    </span>
+                  </div>
+                  <h5 class="card-title">
+                    Lorem non dapibus. Phasellus orci Iaculis venenatis orci
+                  </h5>
+                  <p class="card-text">
+                    Pellentesque sem elit, hendrerit ut sit ameteuismod laoreet
+                    ac justo. Curabitur et diam neque. Hendrerit...
+                  </p>
+                  <a href="#" class="btn btn-primary d-block">Ikuti Playlist</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+
+            </div>
+            <div class="col-sm-6 col-lg-4">
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="anime.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
